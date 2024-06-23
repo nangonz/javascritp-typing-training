@@ -6,3 +6,13 @@
   --black: #222;
   --gray: #999; 
 }
+
+body {
+  font-family: monospace, 'Courier New', Courier;
+  background: var(--black);
+  display: grid;
+  padding: 2rem;
+  justify-content: center;
+  margin-top: 4rem;
+  padding: 1rem;
+}
