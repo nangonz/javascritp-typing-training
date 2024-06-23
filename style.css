@@ -29,3 +29,23 @@ section {
   gap: 1rem;
   max-width: 32rem;
 }
+
+input {
+  z-index: -999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  /* opacity: 0; */
+}
+
+p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  margin: 0;
+}
+
+section time {
+  color: var(--yellow);
+}
