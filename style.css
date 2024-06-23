@@ -63,6 +63,14 @@ letter {
     left: -0.5rem;
     animation: 1s blink infinite ease-in-out;
   }
+
+  &.correct {
+    color: var(--green);
+  }
+
+  &.incorrect {
+    color: var(--red);
+  }
 }
 
 @keyframes blink {
