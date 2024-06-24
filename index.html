@@ -57,7 +57,7 @@
 
       if (currentTime === 0) {
         clearInterval(intervalId)
-        gameOver()
+        timeOver()
       }
     }, 1000)
   }
@@ -84,7 +84,7 @@
 
     $allLetters.forEach($letter => $letter.classList.remove('correct', 'incorrect'))
 
-    $input.value.split('').forEach((char,index) => {
+    $input.value.split('').forEach((char, index) => {
       const $letter = $allLetters[index]
       const letterToCheck = currentWord[index]
 
@@ -92,11 +92,21 @@
       const letterClass = isCorrect ? 'correct' : 'incorrect'
       $letter.classList.add(letterClass)
     })
+
+    $currentLetter.classList.remove('active', 'is-last')
+    const inputLength = $input.value.length
+    const $nextActiveLetter = $allLetters[inputLength]
+
+    if($nextActiveLetter) {
+      $nextActiveLetter.classList.add('active')
+    } else {
+      $currentLetter.classList.add('active', 'is-last')
+    }
   }
 
   function timeOver () {
-    console.log('Time is over')
     $time.textContent = 'Time is over'
+    console.log('Time is over')
   }
 
 </script>
