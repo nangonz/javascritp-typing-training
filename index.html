@@ -70,7 +70,32 @@
     $input.addEventListener('keyup', onKeyUp)
   }
 
-  function onKeyDown () {}
+  function onKeyDown (event) {
+    const $currentWord = $paragraph.querySelector('word.active')
+    const $currentLetter = $currentWord.querySelector('letter.active')
+
+    const { key } = event
+    if ( key === ' ' ) {
+      event.preventDefault()
+      
+      const $nextWord = $currentWord.nextElementSibling
+      const $nextLetter = $nextWord.querySelector('letter')
+
+      $currentWord.classList.remove('active', 'marked')
+      $currentLetter.classList.remove('active')
+
+      $nextWord.classList.add('active')
+      $nextLetter.classList.add('active')
+
+      $input.value = ''
+
+      const hasMissingLetters = $currentWord
+        .querySelectorAll('letter:not(.correct)').length > 0
+
+      const classToAdd = hasMissingLetters ? 'marked' : 'correct'
+      $currentWord.classList.add(classToAdd)
+    }
+  }
 
   function onKeyUp () {
     const $currentWord = $paragraph.querySelector('word.active')
@@ -101,6 +126,7 @@
       $nextActiveLetter.classList.add('active')
     } else {
       $currentLetter.classList.add('active', 'is-last')
+      // TODO: gameOver si no hay proxima palabra
     }
   }
 
