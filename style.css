@@ -60,8 +60,12 @@ letter {
     font-weight: bold;
     font-size: 1rem;
     position: absolute;
-    left: -0.5rem;
+    left: -0.35rem;
     animation: 1s blink infinite ease-in-out;
+  }
+
+  &.active.is-last::before {
+    left: 0.35rem
   }
 
   &.correct {
