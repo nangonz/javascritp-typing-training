@@ -36,7 +36,7 @@ input {
   top: 0;
   left: 0;
   pointer-events: none;
-  /* opacity: 0; */
+  opacity: 0;
 }
 
 p {
@@ -92,4 +92,12 @@ word {
   60% {
     opacity: 0;
   } 
+}
+
+#game {
+  display: flex;
+}
+
+#results {
+  display: none;
 }
