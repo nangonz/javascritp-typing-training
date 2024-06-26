@@ -16,18 +16,19 @@
     </section>
     <section id="results">
       <h2>wpm</h2>
-      <h3></h3>
+      <h3 id="result-wpm"></h3>
       
       <h2>accuracy</h2>
-      <h3></h3>
-    </section>
-    <button id="reload-button">
-      <svg width="3rem" height="3rem" viewBox="0 0 512 512">
-	      <path 
-          fill="#daaf38" 
-          d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208s208-93.31 208-208S370.69 48 256 48m120 190.77h-89l36.88-36.88l-5.6-6.51a87.38 87.38 0 1 0-62.94 148a87.55 87.55 0 0 0 82.42-58.25l5.37-15.13l30.17 10.67l-5.3 15.13a119.4 119.4 0 1 1-112.62-159.18a118.34 118.34 0 0 1 86.36 36.95l.56.62l4.31 5L376 149.81Z" />
-      </svg>
+      <h3 id="result-accuracy"></h3>
+
+      <button id="reload-button">
+        <svg width="3rem" height="3rem" viewBox="0 0 512 512">
+	        <path 
+            fill="#daaf38" 
+            d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208s208-93.31 208-208S370.69 48 256 48m120 190.77h-89l36.88-36.88l-5.6-6.51a87.38 87.38 0 1 0-62.94 148a87.55 87.55 0 0 0 82.42-58.25l5.37-15.13l30.17 10.67l-5.3 15.13a119.4 119.4 0 1 1-112.62-159.18a118.34 118.34 0 0 1 86.36 36.95l.56.62l4.31 5L376 149.81Z" />
+        </svg>
     </button>
+    </section>
   </main>
 </body>
 <script type="module">
@@ -38,11 +39,11 @@
   const $input = document.querySelector('input')
   const $game = document.querySelector('#game')
   const $results = document.querySelector('#results')
-  const $wpm = $results.querySelector('h3')
-  const $accuracy = $results.querySelector('h3:last-child')
+  const $wpm = $results.querySelector('#result-wpm')
+  const $accuracy = $results.querySelector('#result-accuracy')
   const $button = document.querySelector('#reload-button')
 
-  const INITIAL_TIME = 5
+  const INITIAL_TIME = 30
 
   let words = []
   let currentTime = INITIAL_TIME
@@ -51,6 +52,10 @@
   initEvents()
 
   function initGame () {
+    $game.style.display = 'flex'
+    $results.style.display = 'none'
+    $input.value = ''
+
     words = INITIAL_WORDS.toSorted(
       () => Math.random() - 0.5
     ).slice(0, 32)
@@ -91,6 +96,7 @@
     })
     $input.addEventListener('keydown', onKeyDown)
     $input.addEventListener('keyup', onKeyUp)
+    $button.addEventListener('click', initGame)
   }
 
   function onKeyDown (event) {
@@ -201,7 +207,7 @@
 
     const wpm = correctWords * 60 / INITIAL_TIME
     
-    $accuracy.textContent = `${accuracy.toFixed(2)}`
+    $accuracy.textContent = `${accuracy.toFixed(2)}%`
     $wpm.textContent = wpm
   }
 
