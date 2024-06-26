@@ -65,7 +65,7 @@ letter {
     content: '|';
     color: var(--yellow);
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.5rem;
     position: absolute;
     left: -0.35rem;
     animation: 1s blink infinite ease-in-out;
